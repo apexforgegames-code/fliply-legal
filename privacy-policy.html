@@ -19,9 +19,10 @@
   </style>
 </head>
 <body>
+<!-- DRAFT 2026-11-04. Aligns the text with the code (proof-run findings F1-F11). NOT PUBLISHED: publishing to the live legal site is RED (lawyer review + Edan's yes). Hebrew wording needs a native legal reviewer. -->
 
 <h1>Privacy Policy</h1>
-<p class="meta">Fliply by Apex Forge &nbsp;·&nbsp; Last updated: May 24, 2026 &nbsp;·&nbsp; Effective: May 24, 2026</p>
+<p class="meta">Fliply by Apex Forge &nbsp;·&nbsp; Last updated: November 16, 2026 &nbsp;·&nbsp; Effective: November 16, 2026</p>
 
 <p>This Privacy Policy explains how Apex Forge ("we", "us", "our") collects, uses, and protects information when you use the Fliply mobile application ("App"). By using Fliply you agree to this policy.</p>
 
@@ -32,22 +33,28 @@
 
 <table>
   <tr><th>Data</th><th>When collected</th><th>Why</th></tr>
-  <tr><td>Email address, display name</td><td>Only when you sign in with Google (optional)</td><td>Account identity, cloud sync</td></tr>
+  <tr><td>Email address, display name</td><td>Only when you sign in with Google, Apple or an email address and password (optional)</td><td>Account identity, cloud sync. With email sign-in your password is held by Firebase Authentication, not by us, and a password-reset email can be sent. Apple may give us a private relay address instead of your real email.</td></tr>
   <tr><td>Flashcard decks and study progress</td><td>Always</td><td>Core app function — stored locally on your device; optionally synced to our servers when you sign in</td></tr>
-  <tr><td>App usage events (screens visited, sessions started)</td><td>Always</td><td>App improvement via Firebase Analytics</td></tr>
-  <tr><td>Crash reports and device info</td><td>When the app crashes</td><td>Bug fixing via Firebase Crashlytics</td></tr>
-  <tr><td>Purchase history and subscription status</td><td>When you subscribe to Pro</td><td>Subscription management via RevenueCat</td></tr>
-  <tr><td>AI generation prompts (the topic text you type)</td><td>Only when you use AI deck generation (Pro)</td><td>Sent to Google Gemini API to generate flashcards; not stored by us after processing</td></tr>
-  <tr><td>Device advertising ID</td><td>Automatically (Firebase)</td><td>Analytics; you can reset this in your device settings</td></tr>
+  <tr><td>Account profile record in our database (email, display name, account creation time, first and last session times, number of sessions, and in-app upgrade-screen events)</td><td>When you sign in</td><td>Account and sync, and counting how many people come back (retention). Held in Google Cloud Firestore.</td></tr>
+  <tr><td>App usage events (screens visited, sessions started)</td><td>After you confirm you are 13 or older in the app</td><td>App improvement via Firebase Analytics. There is no separate analytics switch in the App.</td></tr>
+  <tr><td>Crash reports and device info (stack trace, device model, OS and app version, a random per-install identifier)</td><td>When the app crashes. The crash reporter starts only after you confirm you are 13 or older</td><td>Bug fixing via Firebase Crashlytics. No user ID and no deck content is attached.</td></tr>
+  <tr><td>Purchase history and subscription status</td><td>Only if paid plans are available and you subscribe</td><td>Subscription management via RevenueCat. Paid plans are currently switched off.</td></tr>
+  <tr><td>AI deck topic (the topic text you type)</td><td>Only after you agree in the App, when you use AI deck generation</td><td>Sent through our server to Google Gemini to generate flashcards</td></tr>
+  <tr><td>AI hint / memory-trick input (the front and back text of the card you ask about, and your language settings)</td><td>Only after you agree in the App, when you ask for a hint or memory trick</td><td>Sent through our server to Google Gemini to write the hint</td></tr>
+  <tr><td>Read-aloud text (the card text being read, and its language)</td><td>Only after you agree in the App (guests too). Otherwise the App speaks with your phone's own voice and sends nothing</td><td>Sent through our server (Cloudflare) to Microsoft's read-aloud voice service, or to Google Cloud Text-to-Speech if Microsoft is unavailable. Cloudflare may cache the resulting audio, keyed by that text.</td></tr>
+  <tr><td>Decks you choose to share (deck name, card text, notes, memory tricks, and your account ID)</td><td>When you share a deck</td><td>Published in a public database so anyone with the link can open it. The shared deck record is readable by anyone and can be found without the link. It carries your account ID, not your email.</td></tr>
+  <tr><td>Weekly leaderboard entry (your account display name and weekly score)</td><td>Only if you are signed in and switch the leaderboard on</td><td>Shown to all users of the leaderboard</td></tr>
 </table>
 
-<p><strong>Guest users (not signed in):</strong> We do not collect any personally identifiable information. All data stays on your device.</p>
+<p><strong>Guest users (not signed in):</strong> Your decks and progress stay on your device. We do not collect your name or email. Guest use still involves technical data from Firebase Analytics and Crashlytics (see above). Read-aloud text and AI requests leave the device only if you agree to them in the App, as described in the table; guests can also use these features.</p>
+<p><strong>On-device features:</strong> Importing cards from a photo uses text recognition on your phone; the image is not uploaded. Study reminders are local notifications scheduled on your phone.</p>
 
 <h2>3. How We Use Your Data</h2>
 <ul>
   <li>To provide and improve the App's functionality</li>
   <li>To sync your decks across devices (signed-in users only)</li>
-  <li>To manage your Pro subscription</li>
+  <li>To manage a Pro subscription, if paid plans are available</li>
+  <li>To read cards aloud, create AI decks and hints, share decks and show the leaderboard, when you choose these features</li>
   <li>To fix crashes and bugs</li>
   <li>To understand how users interact with the App (aggregate analytics)</li>
 </ul>
@@ -56,30 +63,36 @@
 <h2>4. Third-Party Services</h2>
 <table>
   <tr><th>Service</th><th>Provider</th><th>Privacy Policy</th></tr>
-  <tr><td>Firebase Analytics + Crashlytics + Auth</td><td>Google LLC</td><td><a href="https://policies.google.com/privacy">policies.google.com/privacy</a></td></tr>
+  <tr><td>Firebase Analytics + Crashlytics + Authentication (Google, Apple and email sign-in) + Cloud Firestore</td><td>Google LLC</td><td><a href="https://policies.google.com/privacy">policies.google.com/privacy</a></td></tr>
+  <tr><td>Sign in with Apple</td><td>Apple Inc.</td><td><a href="https://www.apple.com/legal/privacy/">apple.com/legal/privacy</a></td></tr>
   <tr><td>RevenueCat (subscriptions)</td><td>RevenueCat, Inc.</td><td><a href="https://www.revenuecat.com/privacy">revenuecat.com/privacy</a></td></tr>
-  <tr><td>Google Gemini API (AI generation)</td><td>Google LLC</td><td><a href="https://policies.google.com/privacy">policies.google.com/privacy</a></td></tr>
+  <tr><td>Google Gemini API (AI decks, hints and memory tricks)</td><td>Google LLC</td><td><a href="https://policies.google.com/privacy">policies.google.com/privacy</a></td></tr>
+  <tr><td>Read-aloud voices (text-to-speech)</td><td>Microsoft Corporation; Google LLC (Google Cloud Text-to-Speech, used if Microsoft is unavailable)</td><td><a href="https://privacy.microsoft.com/privacystatement">privacy.microsoft.com/privacystatement</a> · <a href="https://policies.google.com/privacy">policies.google.com/privacy</a></td></tr>
+  <tr><td>Our server for AI and read-aloud requests (request handling, usage counters per account and day, cached read-aloud audio)</td><td>Cloudflare, Inc.</td><td><a href="https://www.cloudflare.com/privacypolicy/">cloudflare.com/privacypolicy</a></td></tr>
 </table>
 
 <h2>5. Data Retention</h2>
 <ul>
   <li><strong>Local data</strong> (decks, progress): stays on your device until you delete the App or clear its data.</li>
   <li><strong>Cloud data</strong> (signed-in users): retained while your account exists. You can request deletion — see Section 7.</li>
-  <li><strong>Firebase Analytics</strong>: events are retained for 14 months by default (Google's standard).</li>
+  <li><strong>Firebase Analytics</strong>: events are retained for the period set in our Firebase project (Google allows up to 14 months).</li>
+  <li><strong>Shared decks and leaderboard entries</strong>: stay public until the owner removes them or we remove them on request. Deleting your account in the App does not remove them automatically.</li>
+  <li><strong>Cached read-aloud audio</strong> at Cloudflare and AI requests at Google: held according to those providers' own policies; we do not control their retention.</li>
   <li><strong>Crash reports</strong>: retained for 90 days.</li>
 </ul>
 
 <h2>6. Children's Privacy</h2>
-<p>Fliply is not directed at children under the age of 13. We do not knowingly collect personal information from children under 13. If you are under 13, please do not sign in and do not enter personal information. If we learn that we have collected personal data from a child under 13, we will delete it promptly. Contact us at <a href="mailto:apexforge.games@gmail.com">apexforge.games@gmail.com</a> if you have concerns.</p>
+<p>Fliply is not directed at children under the age of 13. The App asks you to confirm that you are 13 or older; Firebase Analytics and the crash reporter start only after that answer. We do not knowingly collect personal information from children under 13. If you are under 13, please do not sign in and do not enter personal information. If we learn that we have collected personal data from a child under 13, we will delete it promptly. Contact us at <a href="mailto:apexforge.games@gmail.com">apexforge.games@gmail.com</a> if you have concerns.</p>
 
 <h2>7. Your Rights</h2>
 <p>Depending on where you live, you may have the following rights regarding your personal data:</p>
 <ul>
   <li><strong>Access</strong> — request a copy of data we hold about you</li>
   <li><strong>Correction</strong> — request correction of inaccurate data</li>
-  <li><strong>Deletion (Right to Erasure)</strong> — request that we delete your account and associated data. To do so, email <a href="mailto:apexforge.games@gmail.com">apexforge.games@gmail.com</a> with subject "Delete my account". We will complete the deletion within 30 days.</li>
+  <li><strong>Deletion (Right to Erasure)</strong> — request that we delete your account and associated data. You can delete your account in the App (Settings → Delete account), which removes your synced decks, settings and profile record and your sign-in account. Shared decks and leaderboard entries are not removed by this; to have them removed, email <a href="mailto:apexforge.games@gmail.com">apexforge.games@gmail.com</a> with subject "Delete my account". We will complete the deletion within 30 days.</li>
   <li><strong>Portability</strong> — export your decks at any time via Settings → Data → Export backup</li>
-  <li><strong>Opt-out of analytics</strong> — you can reset your Advertising ID in your device settings (iOS: Settings → Privacy → Tracking; Android: Settings → Google → Ads)</li>
+  <li><strong>Withdraw consent</strong> — switch off "AI deck creation" and "Online voices" at any time in Settings. After that, nothing is sent for AI or server read-aloud, and read-aloud uses your phone's own voice.</li>
+  <li><strong>Advertising ID</strong> — the App does not use your device advertising ID, shows no ads and has no tracking prompt. The advertising-ID permissions and ad-related Analytics settings are switched off in the App.</li>
 </ul>
 <p>For GDPR (EU) or Israeli Privacy Law (חוק הגנת הפרטיות) requests, contact us and we will respond within 30 days.</p>
 
@@ -95,19 +108,5 @@
 <hr />
 
 <!-- Hebrew Summary -->
-<div class="hebrew">
-  <h2>מדיניות פרטיות — סיכום בעברית</h2>
-  <p><strong>Fliply</strong> פותחה על ידי Apex Forge. מדיניות הפרטיות המלאה מופיעה למעלה באנגלית. להלן סיכום עיקרי:</p>
-  <ul>
-    <li><strong>מה אנחנו אוספים:</strong> כתובת מייל ושם (רק אם התחברת עם Google), נתוני שימוש אנונימיים (Firebase Analytics), דוחות קריסה, היסטוריית רכישות (RevenueCat).</li>
-    <li><strong>משתמשים אורחים</strong> (לא מחוברים): אין איסוף מידע אישי — הכל נשמר רק במכשיר שלך.</li>
-    <li><strong>אנחנו לא מוכרים</strong> את המידע שלך לאף גורם שלישי.</li>
-    <li><strong>מחיקת חשבון:</strong> שלח מייל ל-<a href="mailto:apexforge.games@gmail.com">apexforge.games@gmail.com</a> עם הכותרת "Delete my account" — נמחק תוך 30 יום.</li>
-    <li><strong>ילדים:</strong> האפליקציה אינה מיועדת לילדים מתחת לגיל 13. אם אתה מתחת לגיל זה, אל תתחבר ואל תזין מידע אישי.</li>
-    <li><strong>יצירת קשר:</strong> <a href="mailto:apexforge.games@gmail.com">apexforge.games@gmail.com</a></li>
-  </ul>
-  <p style="font-size:13px;color:#64748b;">בהתאם לחוק הגנת הפרטיות (ישראל, 1981 ותיקון 13) ולתקנות GDPR, יש לך זכות לעיין, לתקן ולמחוק את המידע שנאסף עליך.</p>
-</div>
-
 </body>
 </html>
